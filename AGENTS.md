@@ -39,7 +39,8 @@ tmux/install.sh  writes ~/.tmux.conf that sources tmux/tmux.conf by its
 tmux/russian-layout.sh
                  run last by tmux.conf; binds each Cyrillic letter to the
                  command of the Latin key in the same physical position
-nvim/init.lua    Neovim entry point; requires the modules below
+nvim/init.lua    Neovim entry point: sets <leader> to "," (б on the Russian
+                 layout) and requires the modules below
 nvim/lua/config/windows.lua
                  tmux-style window keys after <C-w>: " and % split, z zooms
                  (via a tab page), x closes; native s/v split keys unbound
@@ -47,6 +48,9 @@ nvim/lua/config/motions.lua
                  Russian twins р/о/л/д of the h/j/k/l cursor motions
 nvim/lua/config/search.lua
                  fzf-lua project search: Ctrl+P files, Ctrl+F text
+nvim/lua/config/file_tree.lua
+                 nvim-tree file tree: <leader>m / бь shows the current file;
+                 the tree follows the edited file; gitignored files dimmed
 nvim/scripts/project-search.sh
                  feeds both pickers: results respecting .gitignore first,
                  gitignored ones after, dimmed (text matches there capped)

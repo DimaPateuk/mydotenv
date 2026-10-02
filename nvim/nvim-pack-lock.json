@@ -3,6 +3,11 @@
     "fzf-lua": {
       "rev": "d5c12c6d72ed84554f0f8dacb84f20da094b6a2d",
       "src": "https://github.com/ibhagwan/fzf-lua"
+    },
+    "nvim-tree.lua": {
+      "rev": "531b807b8f0d6f75016a0ee1e0cd5ce2086e9d95",
+      "src": "https://github.com/nvim-tree/nvim-tree.lua",
+      "version": "1.0.0 - 2.0.0"
     }
   }
 }

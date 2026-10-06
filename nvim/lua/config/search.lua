@@ -17,13 +17,24 @@ local file_actions = vim.tbl_extend("force", fzf.defaults.actions.files, {
   ["alt-f"] = false,
 })
 
+-- Filtering syntax hints shown under the prompt. Files use fzf's extended
+-- search; text filters after " --" are parsed by project-search.sh.
+local files_hint = "^src/ folder  !dist skip  .ts$ ext  'x exact"
+local text_hint = "hello -- src *.ts !dist  (filters after --)"
+
 local function find_files()
   fzf.fzf_exec(script .. " files", {
     prompt = "Files❯ ",
     previewer = "builtin",
     actions = file_actions,
     -- On equal match scores keep the script's order: non-ignored files first.
-    fzf_opts = { ["--ansi"] = true, ["--multi"] = true, ["--scheme"] = "path", ["--tiebreak"] = "index" },
+    fzf_opts = {
+      ["--ansi"] = true,
+      ["--multi"] = true,
+      ["--scheme"] = "path",
+      ["--tiebreak"] = "index",
+      ["--header"] = files_hint,
+    },
   })
 end
 
@@ -32,7 +43,7 @@ local function find_text()
     prompt = "Text❯ ",
     previewer = "builtin",
     actions = file_actions,
-    fzf_opts = { ["--ansi"] = true, ["--multi"] = true },
+    fzf_opts = { ["--ansi"] = true, ["--multi"] = true, ["--header"] = text_hint },
   })
 end
 

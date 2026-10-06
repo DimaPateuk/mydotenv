@@ -41,6 +41,8 @@ tmux/russian-layout.sh
                  command of the Latin key in the same physical position
 nvim/init.lua    Neovim entry point: sets <leader> to "," (б on the Russian
                  layout) and requires the modules below
+nvim/lua/config/colorscheme.lua
+                 VS Code theme (vscode.nvim), Dark+ by default; :Theme dark|light
 nvim/lua/config/windows.lua
                  tmux-style window keys after <C-w>: " and % split, z zooms
                  (via a tab page), x closes; native s/v split keys unbound
@@ -53,7 +55,8 @@ nvim/lua/config/file_tree.lua
                  the tree follows the edited file; gitignored files dimmed
 nvim/scripts/project-search.sh
                  feeds both pickers: results respecting .gitignore first,
-                 gitignored ones after, dimmed (text matches there capped)
+                 gitignored ones after, dimmed (text matches there capped);
+                 text query "TEXT -- src *.ts !dist" filters files by globs
 nvim/nvim-pack-lock.json
                  vim.pack lockfile: pinned plugin revisions; do not edit
 nvim/install.sh  makes ~/.config/nvim (or $XDG_CONFIG_HOME/nvim) a symlink

@@ -4,6 +4,7 @@
 -- the same key is б, so modules map their б twins explicitly.
 vim.g.mapleader = ","
 
+require("config.colorscheme")
 require("config.windows")
 require("config.motions")
 require("config.search")

@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # Makes Neovim load its config from this folder by turning the Neovim config
 # directory (~/.config/nvim) into a symlink to it. A symlink rather than a stub
-# init.lua, because the Lua modules under lua/ and lazy.nvim resolve from the
-# config directory itself.
+# init.lua, because the Lua modules under lua/, scripts/ and the vim.pack
+# lockfile are all found through the config directory itself.
 # The repository path is resolved from this script's location, so the
 # repository can be cloned anywhere. Rerun the script after moving it.
 set -euo pipefail

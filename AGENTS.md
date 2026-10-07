@@ -10,11 +10,14 @@ ln -sf AGENTS.md CLAUDE.md
 
 Read `.agent-best-practices/AGENTS.md` before changing anything.
 
-`.agent-best-practices` must be a symlink to the shared guidance directory
-(it is machine-specific, so it is git-ignored):
+`.agent-best-practices` is a local symlink to the shared guidance directory.
+Its target differs on every machine, so it is git-ignored: never commit it or
+write its target path into tracked files. If the link is missing, read
+`~/.agent-best-practices/AGENTS.md` instead (the guidance installer creates
+that link on every machine), or recreate the local link from it:
 
-```text
-/Users/dzmitrypatseyuk/my/agents-global/agent-best-practices-workspace/output
+```bash
+ln -sfn ~/.agent-best-practices .agent-best-practices
 ```
 
 ## Purpose
@@ -35,7 +38,8 @@ built-in `vim.pack`), `ripgrep`, `fzf` and `git`.
 ```text
 tmux/tmux.conf   tmux configuration (plugins via TPM, not vendored)
 tmux/install.sh  writes ~/.tmux.conf that sources tmux/tmux.conf by its
-                 resolved absolute path; backs up an existing ~/.tmux.conf
+                 resolved absolute path; backs up an existing ~/.tmux.conf;
+                 installs missing TPM and plugins; reloads a running tmux
 tmux/russian-layout.sh
                  run last by tmux.conf; binds each Cyrillic letter to the
                  command of the Latin key in the same physical position

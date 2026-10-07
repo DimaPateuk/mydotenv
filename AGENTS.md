@@ -41,6 +41,8 @@ tmux/russian-layout.sh
                  command of the Latin key in the same physical position
 nvim/init.lua    Neovim entry point: sets <leader> to "," (б on the Russian
                  layout) and requires the modules below
+nvim/lua/config/options.lua
+                 general editor options: line numbers
 nvim/lua/config/colorscheme.lua
                  VS Code theme (vscode.nvim), Dark+ by default; :Theme dark|light
 nvim/lua/config/windows.lua
@@ -48,6 +50,9 @@ nvim/lua/config/windows.lua
                  (via a tab page), x closes; native s/v split keys unbound
 nvim/lua/config/motions.lua
                  Russian twins р/о/л/д of the h/j/k/l cursor motions
+nvim/lua/config/clipboard.lua
+                 system clipboard: <leader>y copies, <leader>d cuts,
+                 <leader>p pastes; з twins plain p
 nvim/lua/config/search.lua
                  fzf-lua project search: Ctrl+P files, Ctrl+F text
 nvim/lua/config/file_tree.lua

@@ -32,6 +32,8 @@ that points the tool at this repository. The terminal is macOS Terminal.app.
 
 External tools, installed with Homebrew: `tmux`, `neovim` (0.12+, for the
 built-in `vim.pack`), `ripgrep`, `fzf` and `git`.
+Language servers for Neovim, also from Homebrew, one per language:
+`vtsls`, `pyright`, `jdtls`.
 
 ## Layout
 
@@ -54,6 +56,7 @@ nvim/lua/config/windows.lua
                  (via a tab page), x closes; native s/v split keys unbound
 nvim/lua/config/motions.lua
                  Russian twins р/о/л/д of the h/j/k/l cursor motions
+                 Ctrl+J / Ctrl+K scroll half a page, cursor centered
 nvim/lua/config/clipboard.lua
                  system clipboard: <leader>y copies, <leader>d cuts,
                  <leader>p pastes; з twins plain p
@@ -62,6 +65,10 @@ nvim/lua/config/search.lua
 nvim/lua/config/file_tree.lua
                  nvim-tree file tree: <leader>m / бь shows the current file;
                  the tree follows the edited file; gitignored files dimmed
+nvim/lua/config/lsp.lua
+                 language servers via nvim-lspconfig (TS/JS, Python, Java):
+                 gd / пв go to definition, gf / па also opens import paths;
+                 both fall back to the built-in keys without a server
 nvim/scripts/project-search.sh
                  feeds both pickers: results respecting .gitignore first,
                  gitignored ones after, dimmed (text matches there capped);

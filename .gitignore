@@ -4,3 +4,4 @@
 
 # Local previews of third-party images; not part of the shared config.
 assets/
+.agents-work/

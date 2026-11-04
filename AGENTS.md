@@ -1,102 +1,20 @@
-# mydotenv Agent Guide
+# mydotenv
 
-`AGENTS.md` is the canonical agent entry point. `CLAUDE.md` must remain a
-symlink to this file so Codex and Claude receive identical guidance. Edit
-`AGENTS.md` only. If `CLAUDE.md` ever becomes a regular file, restore the link:
+`AGENTS.md` is the agent entry point for this project;
+`CLAUDE.md` is a symlink to it. Edit only this file, and keep it a pointer.
 
-```bash
-ln -sf AGENTS.md CLAUDE.md
-```
+All agent files for this project live in `mydotenv-ai-agent/`.
+Global rules come from the global agent and are already loaded.
 
-Read `.agent-best-practices/AGENTS.md` before changing anything.
+Before any task, read the agent entry file in full:
 
-`.agent-best-practices` is a local symlink to the shared guidance directory.
-Its target differs on every machine, so it is git-ignored: never commit it or
-write its target path into tracked files. If the link is missing, read
-`~/.agent-best-practices/AGENTS.md` instead (the guidance installer creates
-that link on every machine), or recreate the local link from it:
+@mydotenv-ai-agent/AGENTS.md
 
-```bash
-ln -sfn ~/.agent-best-practices .agent-best-practices
-```
+It imports every mandatory rule from `mydotenv-ai-agent/rules/` and lists the
+checklists, the project axioms, and the local skills. Codex does not follow
+`@` imports: read that file and every file in `mydotenv-ai-agent/rules/`
+yourself before starting.
 
-## Purpose
-
-This repository stores personal dotfiles for tmux and Neovim. The goal is a
-shareable, self-contained configuration: every config file lives inside this
-repository, so the whole setup can be cloned and reused on another machine.
-
-The project is at an early stage: the tmux config is imported as-is, the
-Neovim config is written from scratch, and each folder has an `install.sh`
-that points the tool at this repository. The terminal is macOS Terminal.app.
-
-External tools, installed with Homebrew: `tmux`, `neovim` (0.12+, for the
-built-in `vim.pack`), `ripgrep`, `fzf` and `git`.
-Language servers for Neovim, also from Homebrew, one per language:
-`vtsls`, `pyright`, `jdtls`.
-
-## Layout
-
-```text
-tmux/tmux.conf   tmux configuration (plugins via TPM, not vendored)
-tmux/install.sh  writes ~/.tmux.conf that sources tmux/tmux.conf by its
-                 resolved absolute path; backs up an existing ~/.tmux.conf;
-                 installs missing TPM and plugins; reloads a running tmux
-tmux/russian-layout.sh
-                 run last by tmux.conf; binds each Cyrillic letter to the
-                 command of the Latin key in the same physical position
-nvim/init.lua    Neovim entry point: sets <leader> to "," (б on the Russian
-                 layout) and requires the modules below
-nvim/lua/config/options.lua
-                 general editor options: line numbers
-nvim/lua/config/colorscheme.lua
-                 VS Code theme (vscode.nvim), Dark+ by default; :Theme dark|light
-nvim/lua/config/windows.lua
-                 tmux-style window keys after <C-w>: " and % split, z zooms
-                 (via a tab page), x closes; native s/v split keys unbound
-nvim/lua/config/motions.lua
-                 Russian twins р/о/л/д of the h/j/k/l cursor motions
-                 Ctrl+J / Ctrl+K scroll half a page, cursor centered
-nvim/lua/config/clipboard.lua
-                 system clipboard: <leader>y copies, <leader>d cuts,
-                 <leader>p pastes; з twins plain p
-nvim/lua/config/search.lua
-                 fzf-lua project search: Ctrl+P files, Ctrl+F text
-nvim/lua/config/file_tree.lua
-                 nvim-tree file tree: <leader>m / бь shows the current file;
-                 the tree follows the edited file; gitignored files dimmed
-nvim/lua/config/lsp.lua
-                 language servers via nvim-lspconfig (TS/JS, Python, Java):
-                 gd / пв go to definition, gf / па also opens import paths;
-                 both fall back to the built-in keys without a server
-nvim/scripts/project-search.sh
-                 feeds both pickers: results respecting .gitignore first,
-                 gitignored ones after, dimmed (text matches there capped);
-                 text query "TEXT -- src *.ts !dist" filters files by globs
-nvim/nvim-pack-lock.json
-                 vim.pack lockfile: pinned plugin revisions; do not edit
-nvim/install.sh  makes ~/.config/nvim (or $XDG_CONFIG_HOME/nvim) a symlink
-                 to nvim/; backs up an existing config directory
-```
-
-- Each tool gets its own top-level folder. Do not mix files of different tools.
-- A new tool means a new top-level folder plus a line in the layout above.
-
-## Rules
-
-- Keep all config files inside this repository. Do not create or modify files
-  in `$HOME` (`~/.tmux.conf`, `~/.config/nvim`, etc.) unless explicitly
-  asked.
-- Do not add other install scripts, symlink managers, or plugin managers
-  until the user chooses an approach for that tool. Neovim plugins use the
-  built-in `vim.pack`, declared next to the code that uses them.
-- Keep configs portable: no secrets, tokens, or machine-specific absolute
-  paths, since the repository is meant to be shared.
-- In tmux, bind Latin keys only. Cyrillic bindings are generated by
-  `tmux/russian-layout.sh`; a hand-written Cyrillic binding is overwritten.
-- In Neovim, give every letter mapping its Russian-layout twin (the Cyrillic
-  letter on the same physical key) in the same call, as
-  `nvim/lua/config/windows.lua` does.
-- Terminal.app never passes Cmd shortcuts to programs, so Neovim keys use
-  Ctrl or other keys a terminal can send. Do not suggest another terminal
-  emulator; the user declined that.
+Default skill for feature, bug-fix, refactor, test, and documentation work
+when no more specific skill applies:
+`mydotenv-ai-agent/skills/feature-delivery/SKILL.md`.

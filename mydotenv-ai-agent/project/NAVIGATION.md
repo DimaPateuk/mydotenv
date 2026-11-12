@@ -36,7 +36,9 @@ nvim/lua/config/file_tree.lua
 nvim/lua/config/lsp.lua
                  language servers via nvim-lspconfig (TS/JS, Python, Java):
                  gd / пв go to definition, gf / па also opens import paths;
-                 both fall back to the built-in keys without a server
+                 both fall back to the built-in keys without a server;
+                 pyright uses the project's .venv (or venv) interpreter, so
+                 definitions reach installed third-party packages
 nvim/lua/config/markdown.lua
                  Markdown preview: render-markdown.nvim in the buffer
                  (:RenderMarkdown toggle), live-preview.nvim in the browser

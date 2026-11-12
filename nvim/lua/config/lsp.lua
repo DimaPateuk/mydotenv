@@ -11,6 +11,30 @@
 -- definition, grn rename, K documentation.
 vim.pack.add({ "https://github.com/neovim/nvim-lspconfig" }, { confirm = false })
 
+local function find_venv_python(root_dir)
+  for _, venv in ipairs({ ".venv", "venv" }) do
+    local python = vim.fs.joinpath(root_dir, venv, "bin", "python")
+    if vim.fn.executable(python) == 1 then
+      return python
+    end
+  end
+  return nil
+end
+
+vim.lsp.config("pyright", {
+  before_init = function(_, config)
+    if not config.root_dir then
+      return
+    end
+    local python = find_venv_python(config.root_dir)
+    if not python then
+      return
+    end
+    local settings = config.settings
+    settings.python = vim.tbl_extend("force", settings.python or {}, { pythonPath = python })
+  end,
+})
+
 -- nvim-lspconfig server name = its executable; the Homebrew formula has the
 -- server's name. Only installed servers are enabled: a missing one would
 -- report a spawn error on every file of its language.

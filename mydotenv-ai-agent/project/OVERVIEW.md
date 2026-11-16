@@ -25,7 +25,8 @@ tmux with plugins via TPM; Neovim configured in Lua with plugins via the
 built-in `vim.pack`; Bash scripts.
 
 External tools, installed with Homebrew: `tmux`, `neovim` (0.12+, for the
-built-in `vim.pack`), `ripgrep`, `fzf` and `git`.
+built-in `vim.pack`), `ripgrep`, `fzf`, `git`, and `jq` (optional, formats
+JSON with `gq`).
 Language servers for Neovim, also from Homebrew, one per language:
 `vtsls`, `pyright`, `jdtls`.
 

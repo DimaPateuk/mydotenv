@@ -43,6 +43,9 @@ nvim/lua/config/markdown.lua
                  Markdown preview: render-markdown.nvim in the buffer
                  (:RenderMarkdown toggle), live-preview.nvim in the browser
                  (:LivePreview start / close); no Nerd Font icons
+nvim/lua/config/json.lua
+                 JSON formatting: in json buffers gq runs jq . (gggqG for
+                 the whole file); skipped when jq is not installed
 nvim/scripts/project-search.sh
                  feeds both pickers: results respecting .gitignore first,
                  gitignored ones after, dimmed (text matches there capped);
